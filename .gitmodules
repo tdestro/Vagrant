@@ -1,0 +1,3 @@
+[submodule "sites/sylius"]
+	path = sites/sylius
+	url = https://github.com/tdestro/destromachinesstore.git
