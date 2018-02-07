@@ -20,6 +20,7 @@ DEPENDENCIES=(
     apache
     node
     yarn
+    cloud_sql_proxy
 )
 
 for MODULE in ${DEPENDENCIES[@]}; do
