@@ -16,7 +16,6 @@ DEPENDENCIES=(
     debian
     tools
     php
-    mysql
     apache
     node
     yarn
