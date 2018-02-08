@@ -4,6 +4,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+
     config.vm.define :sylius do |sylius_config|
         sylius_config.vm.box = "debian/jessie64"
 
@@ -20,5 +22,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         sylius_config.vm.provision :shell, :path => "shell_provisioner/run.sh"
         sylius_config.vm.provision :shell, privileged: false, path: "shell_provisioner/sylius/create.sh"
         sylius_config.vm.provision :shell, privileged: false, path: "shell_provisioner/sylius/install.sh"
+        sylius_config.vm.provision :file do |file|
+          file.source = "./DestroMachinesStore-43bc63c16458.json"
+          file.destination = "/home/vagrant/DestroMachinesStore-d803a0601098.json"
+        end
     end
 end
