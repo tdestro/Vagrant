@@ -6,6 +6,8 @@ cd /home/vagrant
 
 cd /var/www/sites/sylius
 
-[ "$(ls -A ./sylius)" ] &&echo "Directory sylius is not empty." ||{ php bin/console sylius:install --no-interaction; php bin/console sylius:fixtures:load; }
+sudo sed -i 's/memory_limit = .*/memory_limit = -1/' /etc/php/7.1/cli/php.ini
+
+[ "$(ls -A)" ] &&echo "Directory sylius is not empty." ||{ php bin/console sylius:install --no-interaction; php bin/console sylius:fixtures:load; }
 yarn install
 yarn run gulp
