@@ -13,6 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             v.gui = false
             v.memory = 8024
             v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+            v.customize ["setextradata", :id, "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", 0]
+            v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000]
+            v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-start", 1 ]
         end
 
         config.vm.provision "file", source: "~/DestroMachinesStore-2601b370cb00.json", destination: "/home/vagrant/DestroMachinesStore-2601b370cb00.json"

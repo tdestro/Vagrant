@@ -1,5 +1,5 @@
 .DS_Store
-DestroMachinesStore-2601b370cb00.json
+DestroMachinesStore*
 /.vagrant/
 /sites/*
 !/sites/.gitkeep
