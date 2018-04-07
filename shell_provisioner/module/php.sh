@@ -11,7 +11,7 @@ apt-get -y install php7.2-cli php7.2-fpm php7.2-dev php7.2-curl php7.2-intl \
     php7.2-mysql php7.2-sqlite3 php7.2-gd php7.2-mbstring php7.2-xml php-pear
 
 pecl install protobuf
-
+pecl install xdebug
 # php7.2-fpm.sock needs changed in shell_provisioner/config/apache/sylius.vhost if
 # fpm version is changed.
 sed -i 's/;date.timezone.*/date.timezone = UTC/' /etc/php/7.2/fpm/php.ini
@@ -24,6 +24,21 @@ sed -i 's/memory_limit = .*/memory_limit = -1/' /etc/php/7.2/cli/php.ini
 sed -i 's/memory_limit = .*/memory_limit = -1/' /etc/php/7.2/fpm/php.ini
 echo "extension=protobuf.so" >> /etc/php/7.2/cli/php.ini
 echo "extension=protobuf.so" >> /etc/php/7.2/fpm/php.ini
+
+echo "[Xdebug]" >> /etc/php/7.2/cli/php.ini
+echo "zend_extension=/usr/lib/php/20170718/xdebug.so" >> /etc/php/7.2/cli/php.ini
+echo "xdebug.remote_enable=1" >> /etc/php/7.2/cli/php.ini
+echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.2/cli/php.ini
+echo "xdebug.profiler_enable=1" >> /etc/php/7.2/cli/php.ini
+echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.2/cli/php.ini
+
+echo "[Xdebug]" >> /etc/php/7.2/fpm/php.ini
+echo "zend_extension=/usr/lib/php/20170718/xdebug.so" >> /etc/php/7.2/fpm/php.ini
+echo "xdebug.remote_enable=1" >> /etc/php/7.2/fpm/php.ini
+echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.2/fpm/php.ini
+echo "xdebug.profiler_enable=1" >> /etc/php/7.2/fpm/php.ini
+echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.2/fpm/php.ini
+
 service php7.2-fpm restart
 
 # composer
