@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Shell provisioner
 MODULE_PATH='/vagrant/shell_provisioner/module'
 CONFIG_PATH='/vagrant/shell_provisioner/config'

@@ -1,4 +1,5 @@
 #!/bin/bash
 
-# Tools
-apt-get install -y zip unzip curl git vim
+DEBIAN_FRONTEND=noninteractive apt-get install -y zip unzip curl git vim
+
+

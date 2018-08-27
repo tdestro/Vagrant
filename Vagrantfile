@@ -1,12 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+## make sure piece of shit symlink is not broken in vendor, otherwise vagrant up will blow up when rsyncing shit to the guest.
+system("
+    if [ #{ARGV[0]} = 'up' ]; then
+        ls ./sites/Sylius/vendor/bitbag/cms-plugin/tests/Application/node_modules 2>/dev/null||mkdir ./sites/Sylius/vendor/bitbag/cms-plugin/tests/Application/node_modules
+    fi
+")
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-
     config.vm.define :sylius do |sylius_config|
+
         sylius_config.vm.box = "debian/jessie64"
 
         sylius_config.vm.provider "virtualbox" do |v|
