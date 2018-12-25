@@ -3,3 +3,4 @@ DestroMachinesStore*
 /.vagrant/
 /sites/*
 !/sites/.gitkeep
+.idea

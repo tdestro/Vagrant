@@ -10,7 +10,9 @@ sudo apt update
 apt-get -y install php7.2-cli php7.2-fpm php7.2-dev php7.2-curl php7.2-intl \
     php7.2-pgsql php7.2-sqlite3 php7.2-gd php7.2-mbstring php7.2-xml php-pear \
     libzip-dev zip jpegoptim
-
+# god damn piece of shit php-pear breaks with this fucking ampersand here.
+# hack until upstream pulls their heads out of their fucking ass.
+sed -i 's/\$v_att_list = & func_get_args();/\$v_att_list = func_get_args();/' /usr/share/php/Archive/Tar.php
 pecl install protobuf
 pecl install xdebug
 pecl install zip

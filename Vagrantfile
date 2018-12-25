@@ -26,9 +26,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
 
         config.vm.provision "file", source: "~/DestroMachinesStore-2601b370cb00.json", destination: "/home/vagrant/DestroMachinesStore-2601b370cb00.json"
-        config.vm.provision "file", source: "/Users/anthonyodestro/sylius/connectcloudsql.sh", destination: "/home/vagrant/connectcloudsql.sh"
+        config.vm.provision "file", source: "~/sources/sylius/connectcloudsql.sh", destination: "/home/vagrant/connectcloudsql.sh"
         sylius_config.vm.synced_folder "sites/", "/var/www/sites", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc', 'nolock', 'actimeo=2']
-        sylius_config.vm.network "private_network", ip: "10.0.0.200"
+        sylius_config.vm.network "private_network", ip: "172.0.0.2"
 
         # Shell provisioning
         sylius_config.vm.provision :shell, :path => "shell_provisioner/run.sh"
