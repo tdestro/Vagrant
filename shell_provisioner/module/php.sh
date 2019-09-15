@@ -10,9 +10,7 @@ sudo apt update
 apt-get -y install php7.2-cli php7.2-fpm php7.2-dev php7.2-curl php7.2-intl \
     php7.2-pgsql php7.2-sqlite3 php7.2-gd php7.2-mbstring php7.2-xml php-pear \
     libzip-dev zip jpegoptim
-# god damn piece of shit php-pear breaks with this fucking ampersand here.
-# hack until upstream pulls their heads out of their fucking ass.
-sed -i 's/\$v_att_list = & func_get_args();/\$v_att_list = func_get_args();/' /usr/share/php/Archive/Tar.php
+
 pecl install protobuf
 pecl install xdebug
 pecl install zip
@@ -28,6 +26,9 @@ sed -i 's/memory_limit = .*/memory_limit = -1/' /etc/php/7.2/cli/php.ini
 sed -i 's/memory_limit = .*/memory_limit = -1/' /etc/php/7.2/fpm/php.ini
 sed -i 's/post_max_size = .*/post_max_size = 5M/' /etc/php/7.2/fpm/php.ini
 sed -i 's/upload_max_filesize = .*/upload_max_filesize = 5M/' /etc/php/7.2/fpm/php.ini
+#sed -i 's/max_execution_time .*/max_execution_time = 900/' /etc/php/7.2/fpm/php.ini
+
+
 echo "extension=protobuf.so" >> /etc/php/7.2/cli/php.ini
 echo "extension=protobuf.so" >> /etc/php/7.2/fpm/php.ini
 echo "extension=zip.so" >> /etc/php/7.2/cli/php.ini
@@ -42,6 +43,7 @@ echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.2/cli/php.ini
 echo "xdebug.profiler_enable=1" >> /etc/php/7.2/cli/php.ini
 echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.2/cli/php.ini
 echo "xdebug.max_nesting_level=10000" >> /etc/php/7.2/cli/php.ini
+echo "xdebug.remote_log=\"/var/www/sites/Sylius/xdebug.log\"" >> /etc/php/7.2/cli/php.ini
 
 echo "[Xdebug]" >> /etc/php/7.2/fpm/php.ini
 echo "zend_extension=/usr/lib/php/20170718/xdebug.so" >> /etc/php/7.2/fpm/php.ini
@@ -50,6 +52,7 @@ echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.2/fpm/php.ini
 echo "xdebug.profiler_enable=1" >> /etc/php/7.2/fpm/php.ini
 echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.2/fpm/php.ini
 echo "xdebug.max_nesting_level=10000" >> /etc/php/7.2/fpm/php.ini
+echo "xdebug.remote_log=\"/var/www/sites/Sylius/xdebug.log\"" >> /etc/php/7.2/fpm/php.ini
 
 service php7.2-fpm restart
 
