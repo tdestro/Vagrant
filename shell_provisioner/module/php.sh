@@ -17,10 +17,13 @@ pecl install protobuf && \
 echo "extension=protobuf.so" >> /etc/php/7.3/fpm/php.ini && \
 echo "extension=protobuf.so" >> /etc/php/7.3/cli/php.ini
 
-# php7.3-fpm.sock needs changed in shell_provisioner/config/apache/sylius.vhost if
+# php7.3-fpm.sock needs changed in
+# shell_provisioner/config/apache/sylius.vhost if
 # fpm version is changed.
-sed -i 's/;date.timezone.*/date.timezone = UTC/' /etc/php/7.3/fpm/php.ini
-sed -i 's/;date.timezone.*/date.timezone = UTC/' /etc/php/7.3/cli/php.ini
+sed -i 's/;error_log = php_errors.log/error_log = \/var\/www\/sites\/Sylius\/php_errors.log/g' /etc/php/7.3/fpm/php.ini
+sed -i 's/;error_log = php_errors.log/error_log = \/var\/www\/sites\/Sylius\/php_errors.log/g' /etc/php/7.3/cli/php.ini
+sed -i 's/;date.timezone.*/date.timezone = UTC/g' /etc/php/7.3/fpm/php.ini
+sed -i 's/;date.timezone.*/date.timezone = UTC/g' /etc/php/7.3/cli/php.ini
 sed -i 's/^user = www-data/user = vagrant/' /etc/php/7.3/fpm/pool.d/www.conf
 sed -i 's/^group = www-data/group = vagrant/' /etc/php/7.3/fpm/pool.d/www.conf
 sed -i -r -e 's/display_errors = Off/display_errors = On/g' /etc/php/7.3/fpm/php.ini
@@ -33,7 +36,8 @@ sed -i 's/upload_max_filesize = .*/upload_max_filesize = 5M/' /etc/php/7.3/fpm/p
 
 echo "[Xdebug]" >> /etc/php/7.3/cli/php.ini
 echo "xdebug.remote_enable=1" >> /etc/php/7.3/cli/php.ini
-echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.3/cli/php.ini
+echo "xdebug.remote_host=192.168.0.118" >> /etc/php/7.3/cli/php.ini
+echo "xdebug.remote_port=9005" >> /etc/php/7.3/cli/php.ini
 echo "xdebug.profiler_enable=1" >> /etc/php/7.3/cli/php.ini
 echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.3/cli/php.ini
 echo "xdebug.max_nesting_level=10000" >> /etc/php/7.3/cli/php.ini
@@ -41,7 +45,8 @@ echo "xdebug.remote_log=\"/var/www/sites/Sylius/xdebug.log\"" >> /etc/php/7.3/cl
 
 echo "[Xdebug]" >> /etc/php/7.3/fpm/php.ini
 echo "xdebug.remote_enable=1" >> /etc/php/7.3/fpm/php.ini
-echo "xdebug.remote_host=10.0.2.2" >> /etc/php/7.3/fpm/php.ini
+echo "xdebug.remote_host=192.168.0.118" >> /etc/php/7.3/fpm/php.ini
+echo "xdebug.remote_port=9005" >> /etc/php/7.3/fpm/php.ini
 echo "xdebug.profiler_enable=1" >> /etc/php/7.3/fpm/php.ini
 echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.3/fpm/php.ini
 echo "xdebug.max_nesting_level=10000" >> /etc/php/7.3/fpm/php.ini
