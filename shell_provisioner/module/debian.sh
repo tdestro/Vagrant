@@ -21,15 +21,6 @@ setupcon --force
 # Host file
 echo 127.0.0.1 $APP_DOMAIN >> /etc/hosts
 
-# Add dotdeb repository
-wget https://www.dotdeb.org/dotdeb.gpg
-sudo apt-key add dotdeb.gpg
-
-cat << EOF >/etc/apt/sources.list.d/dotdeb.list
-deb http://packages.dotdeb.org jessie all
-deb-src http://packages.dotdeb.org jessie all
-EOF
-
 # Sync package index files
 apt-get update
 

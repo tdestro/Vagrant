@@ -3,8 +3,8 @@
 # Percona server (MySQL)
 
 cat << EOF >/etc/apt/sources.list.d/percona.list
-deb http://repo.percona.com/apt jessie main
-deb-src http://repo.percona.com/apt jessie main
+deb http://repo.percona.com/apt buster main
+deb-src http://repo.percona.com/apt buster main
 EOF
 apt-get update
 

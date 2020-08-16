@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define :sylius do |sylius_config|
 
-        sylius_config.vm.box = "debian/jessie64"
+        sylius_config.vm.box = "debian/buster64"
 
         sylius_config.vm.provider "virtualbox" do |v|
             v.gui = false

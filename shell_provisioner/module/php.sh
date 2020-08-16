@@ -4,7 +4,7 @@
 
 apt install -y apt-transport-https lsb-release ca-certificates
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-echo "deb https://packages.sury.org/php/ jessie main" > /etc/apt/sources.list.d/php.list
+echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list
 sudo apt update
 
 apt-get -y install php7.3 php7.3-cli php7.3-apcu php7.3-mbstring php7.3-curl php7.3-gd php7.3-imagick php7.3-intl php7.3-bcmath \
