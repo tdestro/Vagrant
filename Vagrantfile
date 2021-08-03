@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         sylius_config.vm.synced_folder '.', "/vagrant", type: "rsync", rsync__auto: true, rsync__exclude: ['sites/Sylius/letsencrypt/']
 
         config.vm.provision "file", source: "~/DestroMachinesStore-2601b370cb00.json", destination: "/home/vagrant/DestroMachinesStore-2601b370cb00.json"
-        config.vm.provision "file", source: "~/sources/sylius/connectcloudsql.sh", destination: "/home/vagrant/connectcloudsql.sh"
+        config.vm.provision "file", source: "~/PhpstormProjects/Vagrant/connectcloudsql.sh", destination: "/home/vagrant/connectcloudsql.sh"
 
         sylius_config.vm.synced_folder "sites/", "/var/www/sites", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc', 'nolock', 'actimeo=2']
         ## THIS IS THE IP ADDRESS THE WEBSERVER IS ACCESSIBLE FROM:
