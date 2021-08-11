@@ -36,7 +36,7 @@ sed -i 's/upload_max_filesize = .*/upload_max_filesize = 5M/' /etc/php/7.4/fpm/p
 
 echo "[Xdebug]" >> /etc/php/7.4/cli/php.ini
 echo "xdebug.remote_enable=1" >> /etc/php/7.4/cli/php.ini
-echo "xdebug.remote_host=192.168.0.118" >> /etc/php/7.4/cli/php.ini
+echo "xdebug.remote_host=192.168.0.138" >> /etc/php/7.4/cli/php.ini
 echo "xdebug.remote_port=9005" >> /etc/php/7.4/cli/php.ini
 echo "xdebug.profiler_enable=1" >> /etc/php/7.4/cli/php.ini
 echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.4/cli/php.ini
@@ -45,7 +45,7 @@ echo "xdebug.remote_log=\"/var/www/sites/Sylius/xdebug.log\"" >> /etc/php/7.4/cl
 
 echo "[Xdebug]" >> /etc/php/7.4/fpm/php.ini
 echo "xdebug.remote_enable=1" >> /etc/php/7.4/fpm/php.ini
-echo "xdebug.remote_host=192.168.0.118" >> /etc/php/7.4/fpm/php.ini
+echo "xdebug.remote_host=192.168.0.138" >> /etc/php/7.4/fpm/php.ini
 echo "xdebug.remote_port=9005" >> /etc/php/7.4/fpm/php.ini
 echo "xdebug.profiler_enable=1" >> /etc/php/7.4/fpm/php.ini
 echo "xdebug.profiler_output_dir=\"<AMP home\tmp>\"" >> /etc/php/7.4/fpm/php.ini
