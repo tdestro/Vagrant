@@ -1,10 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-## make sure piece of shit symlink is not broken in vendor, otherwise vagrant up will blow up when rsyncing shit to the guest.
+## make sure piece of shit symlink is not broken in vendor by checking for the existence of the directory it links to and creating it if needed,
+## otherwise vagrant up will blow up when rsyncing shit to the guest.
 system("
     if [ #{ARGV[0]} = 'up' ]; then
-        ls ./sites/Sylius/vendor/sylius/paypal-plugin/node_modules 2>/dev/null || mkdir -p ./sites/Sylius/vendor/sylius/paypal-plugin/node_modules
+        ls ./sites/Sylius/vendor/sylius/paypal-plugin/tests/Application/node_modules 2>/dev/null||mkdir -p ./sites/Sylius/vendor/sylius/paypal-plugin/tests/Application/node_modules
     fi
 ")
 
