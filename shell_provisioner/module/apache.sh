@@ -16,5 +16,7 @@ echo 'Listen 80
 
 cat ${CONFIG_PATH}/apache/sylius.vhost.conf > /etc/apache2/sites-available/${APP_DOMAIN}.conf
 a2ensite ${APP_DOMAIN}.conf
-
+echo "SSLEngine on" >>  /etc/apache2/sites-enabled/000-default.conf
+echo "SSLCertificateFile /home/vagrant/sylius.local.cert" >>  /etc/apache2/sites-enabled/000-default.conf
+echo "SSLCertificateKeyFile /home/vagrant/sylius.local.key" >>  /etc/apache2/sites-enabled/000-default.conf
 service apache2 restart

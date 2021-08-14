@@ -37,10 +37,11 @@ sed -i 's/upload_max_filesize = .*/upload_max_filesize = 5M/' /etc/php/7.4/fpm/p
 echo "xdebug.mode=debug" >> /etc/php/7.4/cli/conf.d/20-xdebug.ini
 echo "xdebug.client_host=10.0.2.2" >> /etc/php/7.4/cli/conf.d/20-xdebug.ini
 echo "xdebug.client_port=9003" >> /etc/php/7.4/cli/conf.d/20-xdebug.ini
-
+#echo "xdebug.file_link_format=\"phpstorm://open?file=%%f&line=%%l&/var/www/>~/PhpstormProjects/Vagrant/\"" >> /etc/php/7.4/cli/conf.d/20-xdebug.ini
 echo "xdebug.mode=debug" >> /etc/php/7.4/fpm/conf.d/20-xdebug.ini
 echo "xdebug.client_host=10.0.2.2" >> /etc/php/7.4/fpm/conf.d/20-xdebug.ini
 echo "xdebug.client_port=9003" >>  /etc/php/7.4/fpm/conf.d/20-xdebug.ini
+#echo "xdebug.file_link_format=\"phpstorm://open?file=%%f&line=%%l&/var/www/>~/PhpstormProjects/Vagrant/\"" >> /etc/php/7.4/fpm/conf.d/20-xdebug.ini
 
 service php7.4-fpm restart
 
