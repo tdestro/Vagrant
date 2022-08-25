@@ -35,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         sylius_config.vm.synced_folder "sites/", "/var/www/sites", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc', 'nolock', 'actimeo=2']
         ## THIS IS THE IP ADDRESS THE WEBSERVER IS ACCESSIBLE FROM:
-        sylius_config.vm.network "private_network", ip: "172.0.0.2"
+        sylius_config.vm.network "private_network", ip: "192.168.56.0"
 
         # Shell provisioning
         sylius_config.vm.provision :shell, :path => "shell_provisioner/run.sh"
