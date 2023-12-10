@@ -15,7 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define :sylius do |sylius_config|
 
-        sylius_config.vm.box = "debian/buster64"
+        sylius_config.vm.box = "debian/bookworm64"
+        config.vbguest.auto_update = false
 
         sylius_config.vm.provider "virtualbox" do |v|
             v.gui = false
@@ -33,9 +34,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.vm.provision "file", source: "~/PhpstormProjects/Vagrant/sylius.local.key", destination: "/home/vagrant/sylius.local.key"
         config.vm.provision "file", source: "~/PhpstormProjects/Vagrant/sylius.local.cert", destination: "/home/vagrant/sylius.local.cert"
 
-        sylius_config.vm.synced_folder "sites/", "/var/www/sites", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'fsc', 'nolock', 'actimeo=2']
+        sylius_config.vm.synced_folder "sites/", "/var/www/sites", type: "nfs", nfs_udp: false, nfs_version: 3
         ## THIS IS THE IP ADDRESS THE WEBSERVER IS ACCESSIBLE FROM:
-        sylius_config.vm.network "private_network", ip: "192.168.56.0"
+        sylius_config.vm.network "private_network", ip: "192.168.56.100"
 
         # Shell provisioning
         sylius_config.vm.provision :shell, :path => "shell_provisioner/run.sh"

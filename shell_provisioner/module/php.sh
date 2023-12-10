@@ -4,7 +4,7 @@
 
 apt install -y apt-transport-https lsb-release ca-certificates
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list
+echo "deb https://packages.sury.org/php/ bookworm main" > /etc/apt/sources.list.d/php.list
 sudo apt update
 
 apt-get -y install php8.1 php8.1-cli php8.1-apcu php8.1-mbstring php8.1-curl php8.1-gd php8.1-imagick php8.1-intl php8.1-bcmath \
