@@ -16,7 +16,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define :sylius do |sylius_config|
 
         sylius_config.vm.box = "debian/bookworm64"
-        config.vbguest.auto_update = false
 
         sylius_config.vm.provider "virtualbox" do |v|
             v.gui = false
@@ -30,9 +29,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         sylius_config.vm.synced_folder '.', "/vagrant", type: "rsync", rsync__auto: true, rsync__exclude: ['sites/Sylius/letsencrypt/']
 
         config.vm.provision "file", source: "~/DestroMachinesStore-2601b370cb00.json", destination: "/home/vagrant/DestroMachinesStore-2601b370cb00.json"
-        config.vm.provision "file", source: "~/PhpstormProjects/Vagrant/connectcloudsql.sh", destination: "/home/vagrant/connectcloudsql.sh"
-        config.vm.provision "file", source: "~/PhpstormProjects/Vagrant/sylius.local.key", destination: "/home/vagrant/sylius.local.key"
-        config.vm.provision "file", source: "~/PhpstormProjects/Vagrant/sylius.local.cert", destination: "/home/vagrant/sylius.local.cert"
+        config.vm.provision "file", source: "connectcloudsql.sh", destination: "/home/vagrant/connectcloudsql.sh"
+        config.vm.provision "file", source: "sylius.local.key", destination: "/home/vagrant/sylius.local.key"
+        config.vm.provision "file", source: "sylius.local.crt", destination: "/home/vagrant/sylius.local.crt"
 
         sylius_config.vm.synced_folder "sites/", "/var/www/sites", type: "nfs", nfs_udp: false, nfs_version: 3
         ## THIS IS THE IP ADDRESS THE WEBSERVER IS ACCESSIBLE FROM:
@@ -40,7 +39,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         # Shell provisioning
         sylius_config.vm.provision :shell, :path => "shell_provisioner/run.sh"
-        sylius_config.vm.provision :shell, privileged: false, path: "shell_provisioner/sylius/create.sh"
-        sylius_config.vm.provision :shell, privileged: false, path: "shell_provisioner/sylius/install.sh"
     end
 end

@@ -1,5 +1,14 @@
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ bookworm main" | tee /etc/apt/sources.list.d/yarn.list
+npm install -g yarn
 
-apt-get update
-apt-get install -y yarn
+cd /var/www/sites/Sylius
+
+yarn install
+yarn run gulp
+
+cp /var/www/sites/Sylius/dockerincludes/DestroMachinesStore-965e04f545e7.json /var/www/sites/Sylius/DestroMachinesStore-965e04f545e7.json
+
+
+ 
+#rm -rf vendor/
+COMPOSER_PROCESS_TIMEOUT=2000 composer install --prefer-dist
+cd
